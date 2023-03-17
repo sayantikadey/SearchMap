@@ -1,8 +1,12 @@
 
-import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import React, {useState, useEffect} from 'react';
+import { Button } from "react-native-paper";
 import * as Location from 'expo-location';
+
+
+const { height, width } = Dimensions.get("window");
 
 export default function App() {
   const [mapRegion, setMapRegion] = useState({});
@@ -36,8 +40,9 @@ export default function App() {
           > 
           {lat && (<Marker coordinate={mapRegion} title='Hi, there'/>)}
       </MapView>
-      <Button title='Get Location' onPress={userLocation} />
-      
+      <Button style={{margin:10, top:50}} onPress={userLocation} icon="map-marker-radius-outline" buttonColor="red" textColor="white" >
+       Get Current Location
+      </Button>
     </View>
   );
 }
@@ -54,5 +59,8 @@ const styles = StyleSheet.create({
     height: 500
   },
   
+  ButtonText: {
+    color: "white",
+  },
 });
 
